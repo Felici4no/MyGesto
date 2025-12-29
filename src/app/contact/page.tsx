@@ -3,7 +3,7 @@ export default function ContactPage() {
         <main className="max-w-2xl mx-auto py-12 px-6">
             <h1 className="text-3xl font-bold mb-6">Contato</h1>
             <p className="text-slate-600 mb-4">
-                Tem alguma dúvida ou problema com seu cartão?
+                Tem alguma dúvida ou problema com seu gesto?
             </p>
             <a href="mailto:suporte@mygesto.app" className="text-blue-600 underline text-lg">
                 suporte@mygesto.app

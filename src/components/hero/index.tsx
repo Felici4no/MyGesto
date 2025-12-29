@@ -13,17 +13,17 @@ export function Hero() {
             </div>
 
             <p className="max-w-xs text-lg text-slate-500 mb-10 leading-relaxed">
-                Envie cartões digitais premium que se destacam no WhatsApp em segundos.
+                Uma forma simples e elegante de dizer algo importante.
             </p>
 
             <div className="w-full max-w-xs space-y-4">
                 <Link href="/create" className="block w-full">
                     <Button size="lg" block className="rounded-full shadow-lg shadow-slate-200">
-                        Criar um cartão
+                        Criar um gesto
                     </Button>
                 </Link>
                 <p className="text-xs text-slate-400">
-                    A partir de R$ 9,90 · Mobile-first
+                    Funciona direto no WhatsApp · Mobile-first
                 </p>
             </div>
         </section>

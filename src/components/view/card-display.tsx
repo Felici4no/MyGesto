@@ -57,7 +57,7 @@ export function CardDisplay({ gift }: { gift: any }) {
                 >
                     <div className="absolute top-0 left-0 w-full h-full bg-slate-50/50" />
                     <div className="z-10 text-center">
-                        <p className="text-sm font-medium text-slate-400 uppercase tracking-widest mb-2 font-display">De {gift.from_name}</p>
+                        <p className="text-sm font-medium text-slate-400 uppercase tracking-widest mb-2 font-display">DE {gift.from_name}</p>
                         <div className="h-px w-12 bg-slate-200 mx-auto mb-2" />
                         <p className="text-slate-900 font-semibold">Você recebeu um gesto.</p>
                         <p className="text-xs text-slate-400 mt-4">(Toque para abrir)</p>
@@ -76,8 +76,8 @@ export function CardDisplay({ gift }: { gift: any }) {
                 className={cn("p-8 rounded-xl border shadow-lg aspect-[4/5] flex flex-col relative", templateClass)}
             >
                 <div className="space-y-1 mb-8">
-                    <p className="text-xs font-medium opacity-60 uppercase tracking-widest">De {gift.from_name}</p>
-                    <p className="text-sm font-medium opacity-60 uppercase tracking-widest">Para {gift.to_name}</p>
+                    <p className="text-xs font-medium opacity-60 uppercase tracking-widest">DE {gift.from_name}</p>
+                    <p className="text-sm font-medium opacity-60 uppercase tracking-widest">PARA {gift.to_name}</p>
                 </div>
 
                 <div className="flex-1 flex items-center justify-center">
@@ -101,15 +101,15 @@ export function CardDisplay({ gift }: { gift: any }) {
                 {gift.paid ? (
                     <Button variant="primary" block onClick={handleDownload} disabled={isDownloading}>
                         {isDownloading ? <span className="animate-spin mr-2">⏳</span> : <Download className="w-4 h-4 mr-2" />}
-                        {isDownloading ? 'Gerando...' : 'Baixar PDF Premium'}
+                        {isDownloading ? 'Gerando...' : 'Baixar PDF'}
                     </Button>
                 ) : (
                     <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-100 text-center space-y-3">
                         <p className="text-sm text-yellow-800">
-                            Gostou do cartão? Libere a versão completa para baixar em alta qualidade.
+                            Se quiser guardar este gesto, você pode formalizá-lo.
                         </p>
                         <Button variant="primary" block size="sm" onClick={() => window.location.href = `/create`}>
-                            <Sparkles className="w-3 h-3 mr-2" /> Criar um cartão assim
+                            <Sparkles className="w-3 h-3 mr-2" /> Criar um gesto assim
                         </Button>
                         <button className="text-xs text-slate-400 hover:text-slate-600 underline" onClick={handleDownload} disabled={isDownloading}>
                             {isDownloading ? 'Gerando...' : 'Baixar versão simples'}

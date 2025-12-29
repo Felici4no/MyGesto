@@ -32,7 +32,7 @@ export function LiveWall() {
         <section className="py-12 px-6 border-t border-slate-100">
             <div className="max-w-md mx-auto">
                 <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6 text-center">
-                    Mural ao vivo
+                    MURAL AO VIVO
                 </h3>
 
                 <div className="space-y-4">
@@ -42,7 +42,7 @@ export function LiveWall() {
                                 <span className="font-medium text-slate-900">
                                     {event.display_from} <span className="text-slate-300">→</span> {event.display_to}
                                 </span>
-                                <span className="text-xs text-slate-500">Cartão {event.template}</span>
+                                <span className="text-xs text-slate-500">{event.template}</span>
                             </div>
                             <span className="text-xs text-slate-400 font-medium tabular-nums">
                                 {event.created_at}

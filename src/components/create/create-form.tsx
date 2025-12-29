@@ -57,8 +57,7 @@ export function CreateForm() {
             setStep('review')
         } catch (error) {
             console.error('Error creating gift:', error)
-            console.error('Error creating gift:', error)
-            toast.error('Erro ao criar o cartão. Tente novamente.')
+            toast.error('Erro ao criar o gesto.')
         } finally {
             setLoading(false)
         }
@@ -90,8 +89,8 @@ export function CreateForm() {
         return (
             <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div className="text-center space-y-2">
-                    <h2 className="text-2xl font-bold">Quase lá!</h2>
-                    <p className="text-slate-500">Veja como ficou o seu gesto.</p>
+                    <h2 className="text-2xl font-bold">Seu gesto está pronto.</h2>
+                    <p className="text-slate-500">Revise antes de enviar.</p>
                 </div>
 
                 {/* Preview Card */}
@@ -104,17 +103,17 @@ export function CreateForm() {
                         <p className="text-sm font-medium text-slate-400 uppercase tracking-widest">Para {formData.toName}</p>
                     </div>
                     <p className="text-lg font-serif italic text-slate-800 whitespace-pre-wrap">{formData.message}</p>
-                    <p className="text-[10px] text-slate-300 mt-auto pt-8">Feito com MyGesto (Marca d&apos;água)</p>
+                    <p className="text-[10px] text-slate-300 mt-auto pt-8">Feito com MyGesto</p>
                 </div>
 
                 <div className="space-y-3">
                     <Button variant="primary" block size="lg" onClick={() => handlePayment('pro')}>
-                        Liberar Premium (R$ 9,90)
+                        Formalizar gesto · R$ 5
                     </Button>
-                    <p className="text-xs text-center text-slate-400">Remove a marca d&apos;água + Download PDF</p>
+                    <p className="text-xs text-center text-slate-400">Remove a marca e libera o download.</p>
 
                     <Button variant="outline" block onClick={handleFreeSend}>
-                        Enviar grátis (com marca d&apos;água)
+                        Enviar como está
                     </Button>
                 </div>
             </div>
@@ -140,7 +139,7 @@ export function CreateForm() {
                         type="text"
                         value={formData.toName}
                         onChange={e => setFormData({ ...formData, toName: e.target.value })}
-                        placeholder="Nome da pessoa especial"
+                        placeholder="Nome da pessoa"
                         className="w-full mt-1 p-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all placeholder:text-slate-300"
                     />
                 </div>
@@ -173,7 +172,7 @@ export function CreateForm() {
                     onChange={e => setFormData({ ...formData, message: e.target.value })}
                     maxLength={240}
                     rows={4}
-                    placeholder="Escreva algo bonito..."
+                    placeholder="Escreva sua mensagem"
                     className="w-full mt-1 p-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all placeholder:text-slate-300 resize-none"
                 />
                 <div className="text-right text-xs text-slate-400 mt-1">
@@ -189,9 +188,12 @@ export function CreateForm() {
                     onChange={e => setFormData({ ...formData, showOnWall: e.target.checked })}
                     className="w-4 h-4 rounded border-slate-300 text-slate-900 focus:ring-slate-900"
                 />
-                <label htmlFor="showOnWall" className="text-sm text-slate-600">
-                    Mostrar no Mural ao vivo?
-                </label>
+                <div className="flex flex-col">
+                    <label htmlFor="showOnWall" className="text-sm text-slate-600">
+                        Mostrar este gesto no mural
+                    </label>
+                    <span className="text-[10px] text-slate-400">Exibimos apenas nomes e o momento. Nunca o texto.</span>
+                </div>
             </div>
 
             <Button
@@ -200,7 +202,7 @@ export function CreateForm() {
                 block
                 size="lg"
             >
-                {loading ? <Loader2 className="animate-spin" /> : "Criar cartão"}
+                {loading ? <Loader2 className="animate-spin" /> : "Criar gesto"}
             </Button>
         </div>
     )
