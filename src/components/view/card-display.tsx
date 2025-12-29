@@ -6,6 +6,12 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { Download, Share2, Sparkles } from 'lucide-react'
+import { pdf } from '@react-pdf/renderer'
+import { GiftPdfDocument } from '@/components/pdf/gift-pdf'
+// Note: We need to import PDFDownloadLink dynamically to avoid server-side errors if any, 
+// usually @react-pdf/renderer works fine in client components but sometimes needs dynamic import.
+// For now, let's try direct usage of `pdf` to generate blob on click for "Baixar PDF Premium"
+// or trigger download manually.
 
 // Simple template styles mapping
 const TEMPLATE_STYLES: Record<string, string> = {
@@ -18,9 +24,26 @@ const TEMPLATE_STYLES: Record<string, string> = {
 
 export function CardDisplay({ gift }: { gift: any }) {
     const [isOpen, setIsOpen] = useState(false)
+    const [isDownloading, setIsDownloading] = useState(false)
 
-    const handleDownload = () => {
-        alert('Implementar download de PDF aqui.')
+    const handleDownload = async () => {
+        setIsDownloading(true)
+        try {
+            const blob = await pdf(<GiftPdfDocument gift={gift} />).toBlob()
+            const url = URL.createObjectURL(blob)
+            const link = document.createElement('a')
+            link.href = url
+            link.download = `mygesto-${gift.from_name}-${gift.to_name}.pdf`
+            document.body.appendChild(link)
+            link.click()
+            document.body.removeChild(link)
+            URL.revokeObjectURL(url) // Clean up the object URL
+        } catch (e) {
+            console.error(e)
+            alert('Erro ao gerar PDF')
+        } finally {
+            setIsDownloading(false)
+        }
     }
 
     const templateClass = TEMPLATE_STYLES[gift.template] || TEMPLATE_STYLES['Essential']
@@ -76,8 +99,9 @@ export function CardDisplay({ gift }: { gift: any }) {
 
             <div className="space-y-3 px-4">
                 {gift.paid ? (
-                    <Button variant="primary" block onClick={handleDownload}>
-                        <Download className="w-4 h-4 mr-2" /> Baixar PDF Premium
+                    <Button variant="primary" block onClick={handleDownload} disabled={isDownloading}>
+                        {isDownloading ? <span className="animate-spin mr-2">⏳</span> : <Download className="w-4 h-4 mr-2" />}
+                        {isDownloading ? 'Gerando...' : 'Baixar PDF Premium'}
                     </Button>
                 ) : (
                     <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-100 text-center space-y-3">
@@ -87,8 +111,8 @@ export function CardDisplay({ gift }: { gift: any }) {
                         <Button variant="primary" block size="sm" onClick={() => window.location.href = `/create`}>
                             <Sparkles className="w-3 h-3 mr-2" /> Criar um cartão assim
                         </Button>
-                        <button className="text-xs text-slate-400 hover:text-slate-600 underline" onClick={handleDownload}>
-                            Baixar versão simples
+                        <button className="text-xs text-slate-400 hover:text-slate-600 underline" onClick={handleDownload} disabled={isDownloading}>
+                            {isDownloading ? 'Gerando...' : 'Baixar versão simples'}
                         </button>
                     </div>
                 )}
