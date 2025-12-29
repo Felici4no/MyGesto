@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import { Loader2 } from 'lucide-react'
+import { toast } from 'sonner'
 
 const TEMPLATES = [
     { id: 'Essential', label: 'Essencial', color: 'bg-white border-slate-200' },
@@ -56,7 +57,8 @@ export function CreateForm() {
             setStep('review')
         } catch (error) {
             console.error('Error creating gift:', error)
-            alert('Erro ao criar o cartão. Tente novamente.')
+            console.error('Error creating gift:', error)
+            toast.error('Erro ao criar o cartão. Tente novamente.')
         } finally {
             setLoading(false)
         }
@@ -80,7 +82,7 @@ export function CreateForm() {
             })
         } else {
             navigator.clipboard.writeText(link)
-            alert('Link copiado para a área de transferência!')
+            toast.success('Link copiado para a área de transferência!')
         }
     }
 

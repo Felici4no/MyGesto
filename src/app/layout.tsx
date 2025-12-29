@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Outfit } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
+import { Toaster } from 'sonner'
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={cn(outfit.className, "antialiased min-h-screen bg-white text-slate-900")}>
         {children}
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   )
