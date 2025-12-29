@@ -44,7 +44,7 @@ export async function POST(req: Request) {
         })
 
         // Store session ID in DB (mocked or real)
-        await supabase.from('gifts').update({ stripe_session_id: session.id }).eq('id', giftId)
+        await supabase.from('gifts').update({ payment_id: session.id }).eq('id', giftId)
 
         return NextResponse.json({ url: session.url })
     } catch (error) {

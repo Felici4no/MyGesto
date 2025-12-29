@@ -8,7 +8,7 @@ export const MOCK_GIFTS = [
         message: 'Este é um gesto de exemplo (mock) para testes de deploy. Se você está vendo isso, o banco de dados não está conectado.',
         template: 'Afetivo',
         paid: false,
-        stripe_session_id: null,
+        payment_id: null,
     },
     {
         id: 'mock-uuid-paid',
@@ -19,6 +19,6 @@ export const MOCK_GIFTS = [
         message: 'Este é um gesto pago de exemplo.',
         template: 'Elegante',
         paid: true,
-        stripe_session_id: 'sess_mock_12345',
+        payment_id: 'sess_mock_12345',
     }
 ]
