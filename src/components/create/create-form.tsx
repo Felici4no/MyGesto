@@ -1,15 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { supabase } from '@/lib/supabase'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
+import { PRODUCTS, Product } from '@/constants/products'
 
-const TEMPLATES = [
+type TemplateId = Product['templateId']
+
+const TEMPLATES: { id: TemplateId; label: string; color: string }[] = [
     { id: 'Essential', label: 'Essencial', color: 'bg-white border-slate-200' },
     { id: 'Afetivo', label: 'Afetivo', color: 'bg-rose-50 border-rose-100' },
     { id: 'Elegante', label: 'Elegante', color: 'bg-stone-50 border-stone-200' },
@@ -19,14 +22,26 @@ const TEMPLATES = [
 
 export function CreateForm() {
     const router = useRouter()
+    const searchParams = useSearchParams()
+
+    // Check if we have a pre-selected product
+    const productId = searchParams.get('productId')
+    const product = productId ? PRODUCTS.find(p => p.id === productId) : null
+
     const [step, setStep] = useState<'create' | 'review'>('create')
     const [loading, setLoading] = useState(false)
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<{
+        fromName: string
+        toName: string
+        template: TemplateId
+        message: string
+        showOnWall: boolean
+    }>({
         fromName: '',
         toName: '',
-        template: 'Essential',
-        message: '',
+        template: product?.templateId || 'Essential',
+        message: product?.initialMessage || '',
         showOnWall: true
     })
 

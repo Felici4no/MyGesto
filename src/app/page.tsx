@@ -1,5 +1,6 @@
 import { Hero } from '@/components/hero'
 import { LiveWall } from '@/components/wall/live-wall'
+import { ProductCarousel } from '@/components/home/product-carousel'
 import Link from 'next/link'
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       </header>
 
       <Hero />
+      <ProductCarousel />
       <LiveWall />
 
       <footer className="py-8 text-center text-xs text-slate-400 space-x-6 border-t border-slate-50 mx-6">
