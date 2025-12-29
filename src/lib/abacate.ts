@@ -17,6 +17,17 @@ export interface AbacatePaymentData {
 
 // Mock implementation of AbacatePay Client
 class MockAbacateClient {
+    private apiKey: string | undefined
+
+    constructor() {
+        this.apiKey = process.env.ABACATEPAY_API_KEY
+        if (!this.apiKey) {
+            console.warn('[MockAbacate] ABACATEPAY_API_KEY is missing. Using mock mode.')
+        } else {
+            console.log('[MockAbacate] ABACATEPAY_API_KEY present. Ready for real integration.')
+        }
+    }
+
     async createPayment(data: AbacatePaymentData) {
         console.log('[MockAbacate] Creating payment:', data)
         return {
