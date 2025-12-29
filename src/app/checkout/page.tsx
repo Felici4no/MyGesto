@@ -19,7 +19,7 @@ function CheckoutContent() {
 
         const startCheckout = async () => {
             try {
-                const res = await fetch('/api/stripe/checkout', {
+                const res = await fetch('/api/checkout', {
                     method: 'POST',
                     body: JSON.stringify({ giftId, plan }),
                     headers: { 'Content-Type': 'application/json' }
