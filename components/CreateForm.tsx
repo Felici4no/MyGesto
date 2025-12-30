@@ -51,7 +51,7 @@ export default function CreateForm() {
     return (
         <div className="w-full max-w-sm mx-auto bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
             {!generatedLink ? (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <div className="flex flex-col gap-1">
                         <label htmlFor="to" className="text-xs font-medium text-stone-500 uppercase tracking-wider">Para quem?</label>
                         <input

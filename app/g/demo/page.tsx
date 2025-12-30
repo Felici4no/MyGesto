@@ -31,18 +31,7 @@ export default function DemoPage({ searchParams }: { searchParams: Promise<{ [ke
                 <CardView searchParams={searchParams} />
             </Suspense>
 
-            {/* Footer CTA */}
-            <div className="mb-8 w-full px-6 opacity-0 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-1000 fill-mode-forwards flex flex-col items-center">
-                <Link
-                    href="/create"
-                    className="w-full max-w-xs py-4 rounded-xl bg-stone-900 text-white text-sm font-medium tracking-wide uppercase hover:bg-stone-800 transition-all shadow-lg shadow-stone-200 text-center"
-                >
-                    Criar um gesto como este
-                </Link>
-                <p className="text-[10px] text-stone-400 mt-3 uppercase tracking-widest">
-                    MyGesto • Gratuito
-                </p>
-            </div>
+
 
         </main>
     );

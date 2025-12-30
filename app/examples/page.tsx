@@ -4,7 +4,7 @@ import { PRESETS } from "@/data/presets";
 
 export default function ExamplesPage() {
     return (
-        <main className="min-h-screen bg-[#fdfdfd] flex flex-col items-center py-12 px-4">
+        <main className="min-h-screen bg-[#fdfdfd] flex flex-col items-center py-12 px-4 pb-32">
             <div className="w-full max-w-md flex justify-between items-center mb-10">
                 <Link href="/" className="text-stone-400 hover:text-stone-600 transition-colors text-sm font-medium flex items-center gap-2">
                     ← Voltar
