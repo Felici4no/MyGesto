@@ -1,0 +1,98 @@
+'use client';
+
+import React from 'react';
+
+interface Card3DProps {
+    isOpen: boolean;
+    to: string;
+    from: string;
+    msg: string;
+    onClose: (e: React.MouseEvent) => void;
+}
+
+export default function Card3D({ isOpen, to, from, msg, onClose }: Card3DProps) {
+    return (
+        <div className="perspective-1000 w-[320px] h-[460px] relative select-none">
+            {/* Container that holds the 'book' */}
+            <div className={`relative w-full h-full duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] transition-transform preserve-3d ${isOpen ? 'translate-x-[20px]' : ''}`}>
+
+                {/* INSIDE of the card (The Base) */}
+                {/* When closed, this is covered. When open, this is visible. */}
+                <div className="absolute inset-0 bg-[#fffdfa] rounded-2xl shadow-xl flex flex-col p-8 items-start text-left border border-stone-100 overflow-hidden">
+
+                    {/* Texture/Noise optional */}
+                    <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none mix-blend-multiply"></div>
+
+                    {/* Close Button */}
+                    <button
+                        onClick={onClose}
+                        className={`absolute top-4 right-4 text-stone-300 hover:text-stone-500 transition-opacity p-2 ${isOpen ? 'opacity-100 pointer-events-auto delay-300' : 'opacity-0 pointer-events-none'}`}
+                        aria-label="Fechar cartão"
+                    >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+
+                    {/* Content */}
+                    <div className={`flex flex-col h-full w-full mt-4 transition-opacity duration-700 delay-200 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
+                        <div className="flex flex-col gap-6">
+                            <div>
+                                <h2 className="text-xl font-serif text-stone-800 tracking-tight">{to},</h2>
+                                <p className="text-stone-500 text-sm mt-1">{from} te dedicou:</p>
+                            </div>
+
+                            <div className="relative">
+                                {/* Decorative quote line */}
+                                <div className="absolute -left-4 top-0 bottom-0 w-[2px] bg-stone-100"></div>
+                                <p className="text-stone-700 leading-relaxed font-serif text-lg whitespace-pre-wrap">
+                                    {msg}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="mt-auto pt-8 self-end">
+                            <p className="font-serif italic text-stone-600">— {from}</p>
+                        </div>
+                    </div>
+
+                    {/* Call to Action specific to the 'inside' - Maybe a watermark */}
+                    <div className={`absolute bottom-3 left-0 right-0 text-center transition-opacity duration-500 delay-500 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
+                        <span className="text-[10px] text-stone-300 uppercase tracking-widest font-sans">MyGesto</span>
+                    </div>
+                </div>
+
+
+                {/* FRONT COVER (The Flap) */}
+                {/* Transform Origin Left: Rotates open like a book cover */}
+                <div
+                    className={`absolute inset-0 bg-white rounded-2xl shadow-sm border border-stone-200 transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] origin-left preserve-3d z-10 ${isOpen ? '[transform:rotateY(-160deg)] shadow-none' : '[transform:rotateY(0deg)] shadow-2xl'}`}
+                >
+                    {/* Front Face: The Cover Art */}
+                    <div className="absolute inset-0 backface-hidden bg-[#faf9f6] flex items-center justify-center rounded-2xl overflow-hidden">
+                        <div className="absolute inset-0 opacity-[0.4] bg-stone-50/50"></div>
+                        {/* Minimalist Design Element */}
+                        <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-stone-100 to-white shadow-inner flex items-center justify-center border border-stone-50">
+                            <div className="w-16 h-16 rounded-full bg-stone-50 shadow-sm"></div>
+                        </div>
+
+                        <div className="absolute bottom-12 text-center w-full">
+                            <p className="text-stone-400 text-xs tracking-[0.2em] uppercase font-medium">Um gesto para você</p>
+                        </div>
+
+                        {/* Spine shadow hint on left */}
+                        <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-gradient-to-r from-stone-300/20 to-transparent"></div>
+                    </div>
+
+                    {/* Back Face: The Left Inside (Visible when open) */}
+                    <div className="absolute inset-0 backface-hidden rotate-y-180 bg-[#fffdfa] rounded-2xl border-r border-stone-100">
+                        {/* Just a subtle paper texture or blank */}
+                        <div className="absolute inset-0 opacity-[0.02] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    );
+}
