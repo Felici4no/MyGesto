@@ -2,14 +2,16 @@
 
 import { useState } from 'react';
 import Card3D from './Card3D';
+import { CardVariant } from '@/data/presets';
 
 interface GestureCardProps {
     to: string;
     from: string;
     msg: string;
+    variant?: CardVariant;
 }
 
-export default function GestureCard({ to, from, msg }: GestureCardProps) {
+export default function GestureCard({ to, from, msg, variant = 'default' }: GestureCardProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleToggle = () => {
@@ -48,6 +50,7 @@ export default function GestureCard({ to, from, msg }: GestureCardProps) {
                     to={to}
                     from={from}
                     msg={msg}
+                    variant={variant}
                     onClose={handleClose}
                 />
             </div>

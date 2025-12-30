@@ -2,12 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import CopyLinkButton from './CopyLinkButton';
+import SuggestionSelector from './SuggestionSelector';
+import { Preset, CardVariant } from '@/data/presets';
 
 export default function CreateForm() {
     const [formData, setFormData] = useState({
         to: '',
         from: '',
-        msg: ''
+        msg: '',
+        variant: 'default' as CardVariant
     });
 
     const [generatedLink, setGeneratedLink] = useState('');
@@ -32,7 +35,8 @@ export default function CreateForm() {
         const params = new URLSearchParams({
             to: formData.to.trim(),
             from: formData.from.trim(),
-            msg: formData.msg.trim()
+            msg: formData.msg.trim(),
+            variant: formData.variant
         });
 
         // In production, this would be the domain. Localhost for now.

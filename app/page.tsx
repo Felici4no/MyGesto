@@ -26,10 +26,10 @@ export default function Home() {
           </Link>
 
           <Link
-            href="/g/demo?to=Visitante&from=MyGesto&msg=Que bom ter voc%C3%AAn%20por%20aqui.%20Este%20%C3%A9%20um%20exemplo%20de%20como%20seu%20gesto%20pode%20ser."
+            href="/examples"
             className="w-full py-4 rounded-xl bg-white text-stone-600 border border-stone-200 text-sm font-medium tracking-wide uppercase hover:bg-stone-50 transition-colors"
           >
-            Ver exemplo
+            Ver exemplos
           </Link>
         </div>
 
