@@ -19,11 +19,12 @@ export default function CardRow({ title, cards }: CardRowProps) {
 
             {/* Horizontal Scroll Container */}
             <div
-                className="flex overflow-x-auto gap-4 px-6 md:px-12 pb-8 pt-2 scrollbar-none snap-x snap-proximity touch-pan-y min-h-[280px] md:min-h-[340px]"
+                className="flex overflow-x-auto gap-4 px-6 md:px-12 pb-8 pt-2 scrollbar-none snap-x snap-proximity min-h-[280px] md:min-h-[340px]"
                 style={{
                     scrollbarWidth: 'none',
                     msOverflowStyle: 'none',
-                    WebkitOverflowScrolling: 'touch'
+                    WebkitOverflowScrolling: 'touch',
+                    touchAction: 'pan-x pan-y'
                 }}
             >
                 {cards.map((card) => (
