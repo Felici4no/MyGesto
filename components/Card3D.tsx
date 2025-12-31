@@ -115,13 +115,9 @@ export default function Card3D({ isOpen, to, from, msg, variant = 'default', onC
                                 </p>
                             </div>
 
-                            {variant === 'fireworks' && (
-                                <div className="mt-2 border-t border-stone-100 pt-2">
-                                    <React.Suspense fallback={null}>
-                                        <Countdown />
-                                    </React.Suspense>
-                                </div>
-                            )}
+                            <div className="mt-2 border-t border-stone-100 pt-2">
+                                <Countdown />
+                            </div>
                         </div>
 
                         <div className="mt-auto pt-8 self-end">

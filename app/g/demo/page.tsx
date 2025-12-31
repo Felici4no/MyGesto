@@ -20,10 +20,10 @@ async function CardView({ searchParams }: { searchParams: Promise<{ [key: string
 
 export default function DemoPage({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
     return (
-        <main className="min-h-screen bg-[#fdfdfd] flex flex-col items-center justify-between py-8 px-4 overflow-hidden">
+        <main className="min-h-screen bg-[#fdfdfd] flex flex-col items-center justify-center relative overflow-hidden">
 
-            {/* Header / Brand - minimal */}
-            <div className="w-full flex justify-center opacity-30 mt-4">
+            {/* Header / Brand - absolute top */}
+            <div className="absolute top-8 w-full flex justify-center opacity-30 pointer-events-none">
                 <div className="w-3 h-3 rounded-full bg-stone-200"></div>
             </div>
 

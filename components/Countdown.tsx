@@ -10,17 +10,19 @@ export default function Countdown() {
         seconds: 0
     });
 
+    const [mounted, setMounted] = useState(false);
+
     useEffect(() => {
+        setMounted(true);
         // Target: Jan 1, 2026
         const targetDate = new Date('2026-01-01T00:00:00').getTime();
 
-        const interval = setInterval(() => {
+        const updateTime = () => {
             const now = new Date().getTime();
             const difference = targetDate - now;
 
             if (difference <= 0) {
-                clearInterval(interval);
-                // Optional: Set to 0 or handle "Happy New Year" state
+                // clearInterval(interval);
                 return;
             }
 
@@ -30,13 +32,18 @@ export default function Countdown() {
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
             setTimeLeft({ days, hours, minutes, seconds });
-        }, 1000);
+        }
+
+        updateTime(); // Run immediately
+        const interval = setInterval(updateTime, 1000);
 
         return () => clearInterval(interval);
     }, []);
 
+    if (!mounted) return null;
+
     return (
-        <div className="flex gap-3 text-center justify-center py-4">
+        <div className="flex gap-3 text-center justify-center py-4 animate-in fade-in duration-700">
             <div className="flex flex-col">
                 <span className="text-xl font-mono font-bold text-stone-800">{String(timeLeft.days).padStart(2, '0')}</span>
                 <span className="text-[8px] uppercase tracking-widest text-stone-400">Dias</span>

@@ -42,7 +42,7 @@ export default function GestureCard({ to, from, msg, variant = 'default' }: Gest
                 tabIndex={0}
                 onClick={handleOpen}
                 onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleOpen()}
-                className={`relative transition-all duration-500 outline-none ${isOpen ? 'cursor-default' : 'cursor-pointer'}`}
+                className={`relative transition-all duration-500 outline-none z-30 ${isOpen ? 'cursor-default' : 'cursor-pointer'}`}
                 aria-label={isOpen ? "Cartão aberto" : "Toque para abrir o cartão"}
             >
                 <Card3D
@@ -56,10 +56,24 @@ export default function GestureCard({ to, from, msg, variant = 'default' }: Gest
             </div>
 
             {!isOpen && (
-                <p className="mt-8 text-sm text-gray-400 font-medium animate-pulse tracking-wide uppercase text-[10px]">
-                    Toque para abrir
-                </p>
+                <div className="absolute bottom-20 text-center animate-pulse z-20">
+                    <p className="text-sm text-stone-400 font-medium tracking-wide uppercase text-[10px]">
+                        Toque para abrir
+                    </p>
+                </div>
             )}
-        </div>
-    );
+
+            {/* Floating Footer CTA - Fixed position relative to container or screen */}
+            <div className={`fixed bottom-8 left-0 right-0 px-6 flex flex-col items-center transition-all duration-1000 z-40 ${isOpen ? 'opacity-100 translate-y-0 delay-500' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
+                <a
+                    href="/create"
+                    className="w-full max-w-xs py-4 rounded-xl bg-stone-900 text-white text-sm font-medium tracking-wide uppercase hover:bg-stone-800 transition-all shadow-lg shadow-stone-200 text-center"
+                >
+                    Criar um gesto como este
+                </a>
+                <p className="text-[10px] text-stone-400 mt-3 uppercase tracking-widest">
+                    MyGesto • Gratuito
+                </p>
+            </div>
+            );
 }
