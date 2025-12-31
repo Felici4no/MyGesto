@@ -18,11 +18,34 @@ export default function CreateForm() {
 
     useEffect(() => {
         setIsClient(true);
+
+        // Pre-fill form from URL params (when coming from examples page)
+        if (typeof window !== 'undefined') {
+            const params = new URLSearchParams(window.location.search);
+            const urlVariant = params.get('variant') as CardVariant;
+            const urlMsg = params.get('msg');
+
+            if (urlVariant || urlMsg) {
+                setFormData(prev => ({
+                    ...prev,
+                    ...(urlVariant && { variant: urlVariant }),
+                    ...(urlMsg && { msg: urlMsg })
+                }));
+            }
+        }
     }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handlePresetSelect = (preset: Preset) => {
+        setFormData(prev => ({
+            ...prev,
+            variant: preset.variant,
+            msg: preset.msg
+        }));
     };
 
     const isFormValid = formData.to.trim() && formData.from.trim() && formData.msg.trim().length >= 5 && formData.msg.trim().length <= 120;
@@ -99,6 +122,12 @@ export default function CreateForm() {
                             required
                         />
                     </div>
+
+                    {/* Theme/Preset Selector */}
+                    <SuggestionSelector
+                        onSelect={handlePresetSelect}
+                        selectedVariant={formData.variant}
+                    />
 
                     <button
                         type="submit"
