@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { CardVariant } from '@/data/presets';
+import Countdown from './Countdown';
 
 interface Card3DProps {
     isOpen: boolean;
@@ -113,6 +114,14 @@ export default function Card3D({ isOpen, to, from, msg, variant = 'default', onC
                                     {msg}
                                 </p>
                             </div>
+
+                            {variant === 'fireworks' && (
+                                <div className="mt-2 border-t border-stone-100 pt-2">
+                                    <React.Suspense fallback={null}>
+                                        <Countdown />
+                                    </React.Suspense>
+                                </div>
+                            )}
                         </div>
 
                         <div className="mt-auto pt-8 self-end">
