@@ -55,7 +55,7 @@ export async function generateMetadata({
 
 export default function DemoPage({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
     return (
-        <main className="min-h-screen bg-[#fdfdfd] flex flex-col items-center justify-center relative overflow-hidden">
+        <main className="min-h-screen bg-stone-100 flex flex-col items-center justify-center relative overflow-hidden">
 
             {/* Header / Brand - absolute top */}
             <div className="absolute top-8 w-full flex justify-center opacity-30 pointer-events-none">

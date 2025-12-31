@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-6 bg-[#fdfdfd] text-center">
+    <main className="flex min-h-screen flex-col items-center justify-center p-6 bg-stone-100 text-center">
       <div className="max-w-md w-full flex flex-col items-center gap-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
 
         {/* Brand */}

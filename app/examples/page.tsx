@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function ExamplesPage() {
     return (
-        <main className="min-h-screen bg-[#fdfdfd] flex flex-col py-12 pb-32">
+        <main className="min-h-screen bg-stone-100 flex flex-col py-12 pb-32">
             {/* Header */}
             <div className="w-full px-6 md:px-12 flex justify-between items-center mb-10">
                 <Link href="/" className="text-stone-400 hover:text-stone-600 transition-colors text-sm font-medium flex items-center gap-2 group">
