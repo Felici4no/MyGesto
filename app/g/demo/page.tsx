@@ -2,6 +2,8 @@ import GestureCard from "@/components/GestureCard";
 import Link from "next/link";
 import { Suspense } from "react";
 
+import { Metadata } from "next";
+
 // Wrapper to handle async searchParams in Next.js 15+ properly while keeping the component simple
 async function CardView({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
     const params = await searchParams;
@@ -16,6 +18,39 @@ async function CardView({ searchParams }: { searchParams: Promise<{ [key: string
             <GestureCard to={to} from={from} msg={msg} variant={variant} />
         </div>
     );
+}
+
+export async function generateMetadata({
+    searchParams
+}: {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}): Promise<Metadata> {
+    const params = await searchParams;
+    const to = (params.to as string) || "você";
+    const from = (params.from as string) || "alguém";
+
+    const ogUrl = new URL("https://mygesto.vercel.app/api/og");
+    ogUrl.searchParams.set("to", to);
+    if (from !== "alguém") {
+        ogUrl.searchParams.set("from", from);
+    }
+
+    return {
+        title: `Um gesto para ${to}`,
+        description: `${from} te enviou um cartão no MyGesto`,
+        openGraph: {
+            title: `Um gesto para ${to}`,
+            description: `${from} te enviou um cartão no MyGesto`,
+            images: [
+                {
+                    url: ogUrl.toString(),
+                    width: 1200,
+                    height: 630,
+                    alt: `Cartão para ${to}`,
+                },
+            ],
+        },
+    };
 }
 
 export default function DemoPage({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {

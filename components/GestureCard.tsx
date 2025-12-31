@@ -75,5 +75,6 @@ export default function GestureCard({ to, from, msg, variant = 'default' }: Gest
                     MyGesto • Gratuito
                 </p>
             </div>
-            );
+        </div>
+    );
 }
