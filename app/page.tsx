@@ -12,7 +12,7 @@ export default function Home() {
           </div>
           <h1 className="text-3xl font-serif text-stone-900 tracking-tight">MyGesto</h1>
           <p className="text-stone-500 text-sm max-w-[280px] leading-relaxed">
-            Um cartão digital com alma física. Silencioso, elegante e feito para durar na memória.
+            Um cartão digital com alma física.
           </p>
         </div>
 
