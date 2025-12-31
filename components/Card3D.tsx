@@ -141,8 +141,17 @@ export default function Card3D({ isOpen, to, from, msg, variant = 'default', onC
                     <div className="absolute inset-0 backface-hidden flex items-center justify-center rounded-2xl overflow-hidden">
                         {getArtElement()}
 
-                        <div className={`absolute bottom-12 text-center w-full ${variant === 'fireworks' ? 'text-white/60' : 'text-stone-400'}`}>
+                        <div className={`absolute bottom-16 text-center w-full ${variant === 'fireworks' ? 'text-white/60' : 'text-stone-400'}`}>
                             <p className="text-xs tracking-[0.2em] uppercase font-medium">{getTitle()}</p>
+                        </div>
+
+                        {/* Click Hint Icon */}
+                        <div className={`absolute bottom-6 w-full flex justify-center animate-bounce duration-[2000ms] ${variant === 'fireworks' ? 'text-white/50' : 'text-stone-300'}`}>
+                            {/* Simple Cursor arrow */}
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z" />
+                                <path d="M13 13l6 6" />
+                            </svg>
                         </div>
 
                         {/* Spine shadow hint on left */}
