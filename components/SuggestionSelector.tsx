@@ -12,7 +12,7 @@ export default function SuggestionSelector({ onSelect, selectedVariant }: Sugges
     return (
         <div className="flex flex-col gap-2 mt-4">
             <span className="text-xs font-medium text-stone-500 uppercase tracking-wider">Sugestões e Temas</span>
-            <div className="flex gap-3 overflow-x-auto pb-4 no-scrollbar items-start">
+            <div className="flex gap-3 overflow-x-auto pb-4 no-scrollbar items-start touch-pan-y">
                 {PRESETS.map((preset) => (
                     <button
                         key={preset.id}
